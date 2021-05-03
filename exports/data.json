@@ -1,0 +1,18 @@
+[
+  {
+    "url": "https:getfedora.org",
+    "subdomain": "",
+    "second-level": "getfedora",
+    "top-level": "org",
+    "subdirectory": "",
+    "status": 200
+  },
+  {
+    "url": "https:getfedora.org/en/workstation",
+    "subdomain": "",
+    "second-level": "getfedora",
+    "top-level": "org",
+    "subdirectory": "en/workstation",
+    "status": 200
+  }
+]
