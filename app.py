@@ -1,18 +1,10 @@
 # import json
 import json
+import pprint
 
-# open json file
-
-# error handle for inability to open or append (do for each) within each
-
-# handle for new file
-
-# handle for file append
-
-# -------- #
-# get input
-# -------- #
+# Data list
 data = []
+
 # SAMPLE DATA
 testEntry = {
     'name': 'Get Fedora Landing Page',
@@ -26,9 +18,22 @@ testEntry = {
     'notes': ''
 }
 
+def createItem():
+    item = {}
+    name = input('page title: ')
+    url = input('page url: ')
+    status = input('status: ')
+    item['name'] = name
+    item['url'] = url
+    item['status'] = status
+    return item
+
+# TODO refactor this for auto item population using all values noted above. appending children isn't something that I want to focus on now
+
 # insert entry into list
 def insertEntry(item):
     # TODO error handling needed
+    createItem()
     # check if the item is ok
     pprint.pprint(item)
     while True:
@@ -45,32 +50,19 @@ def insertEntry(item):
         except ValueError:
             print('There was a value error')
 
-# id auto gnerated
-# status code (200, 404 etc)
-# page title
-# url
-# relative path
-# parent
-# children
-# review notes
-# -------- #
-# TODO refactor this for auto item population using all values noted above. appending children isn't something that I want to focus on now
-def createItem():
-    item = {}
-    name = input('page title')
-    url = input('page url')
-    status = input('status')
-    item['name'] = name
-    item['url'] = url
-    item['status'] = status
-# -------- #
-# create tree
-# -------- #
-# TODO Organize the above information into trees while documenting
-# -------- #
+# ------------------ #
+# Write to json file
+# ------------------ #
 
-# print to check if correct
+while True:
+    try:
+        # create a new file set to append. TODO create a more useful filename sequence
+        # TODO add from data list that will be auto populated. **ATM** design for manual entry append
+        file = open('export/data.json', 'a')
+        # TODO run a loop to append content to the file
 
-# append to file
+        # close file when finished adding
+        file.close()
+    except FileNotFoundError:
+        print('Could not find the file that you\'re trying to write to')
 
-# close file
