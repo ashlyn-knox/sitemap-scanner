@@ -1,11 +1,17 @@
-# Sitemap Scraper
-
+# Sitemap Scanner
 * Goal: Build a tool that will accurately map out an entire website/web application.
-  - Enter root url, crawl through links and document each page connected to it
-  - use link selector to find links and follow them.
-    - **NOTE** This could cause problems with links to other sites, error handling needs to make sure that if the page is part of a different site, it is not to be studied
-  * Track endpoints to document site.
-* Output: Output information into an sql database. Or csv file. I think a db would be better
-  - Create a new table for each url tree
-  - id's to link them to one another
-  - document data into a table. finish when everything attached to the parent url is tracked, request to go ahead with connections, create a separate table for each page group
+
+## Progress
+* Currently creating function to create a json file and populate it with entries. Each entry will be a page.
+* **TODO** decide how to document tree structure. This is my current idea -- however I'm considering switching from JSON to SQL
+  - create a list for each subdomain
+  - populate list with objects, an object will contain all the information for  given page (including other subdomains that it links to and it's children)
+  - Test this out, as sites become really nested, this system may become unintuitive to parse.
+* Automatically write entries to the json file
+* Improve error handling and user interface
+  - verification of correct entry
+  - ability to update entries prior to submitting them
+
+## Next Step
+* implement scraper that will populate the json data instead of it being a manual tool
+* Export to markdown file as a list of bullet points with limited information, export to csv file for easy visualization
