@@ -60,11 +60,10 @@ def insertEntry():
 
 while True:
     try:
-        # create a new file set to append. TODO create a more useful filename sequence
         # TODO add from data list that will be auto populated. **ATM** design for manual entry append
         file = open('exports/data.json', 'a')
-        # TODO run a loop to append content to the file
-
+        # this will input information into the file. NOTE: does not add them to the array, but outside of it.
+        file.write(json.dumps(testEntry))
         # close file when finished adding
         file.close()
         break
