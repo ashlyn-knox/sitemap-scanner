@@ -1,6 +1,9 @@
 # Sitemap Scanner
 * Goal: Build a tool that will accurately map out an entire website/web application.
 
+## Current win
+* created a function that adds properly formatted json data to an array in the data file.
+* TODO: autogenerate this file, it should have some user customization for file naming, test between appending to an array vs just adding json objects with update()
 
 ## Next Steps (as of 3-05-21)
 * implement scraper that will populate the json data instead of it being a manual tool

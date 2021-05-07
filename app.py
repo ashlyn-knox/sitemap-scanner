@@ -1,9 +1,5 @@
 # import json
 import json
-import pprint
-
-# Data list
-data = []
 
 # SAMPLE DATA
 testEntry = {
@@ -18,55 +14,15 @@ testEntry = {
     'notes': ''
 }
 
-def createItem():
-    item = {}
-    # name will be taken from pages h1
-    name = input('page title: ')
-    # from url
-    url = input('page url: ')
-    # from header
-    status = input('status: ')
-    item['name'] = name
-    item['url'] = url
-    item['status'] = status
-    return item
+# If no file already, create exports/data.json and add an array called sitemap
 
-# INSERT REFACTOR 1
-# TODO: use .items() method to get values from objects
 
-# TODO refactor this for auto item population using all values noted above. appending children isn't something that I want to focus on now
+def write_json_entry(new_data, filename="exports/data.json"):
+    with open(filename, 'r+') as file:
+        file_data = json.load(file)
+        # this will write to a key called siteMap. because it uses append, it will update the list/array. FOR a JSON object, use update(new_data) instead
+        file_data['siteMap'].append(new_data)
+        file.seek(0)
+        json.dump(file_data, file, indent = 2)
 
-# insert entry into list
-def insertEntry():
-    createItem()
-    # check if the item is ok
-    while True:
-        try:
-            verifyItem = input('Does anything need to be change? yes or no')
-            if verifyItem == 'y':
-                # TODO use the object.update() method to change keys
-                print('placeholder for function to change content')
-            else:
-                # Append to the list
-                data.append(item)
-                print('successful insertion')
-            break
-        except ValueError:
-            print('There was a value error')
-
-# ------------------ #
-# Write to json file
-# ------------------ #
-
-while True:
-    try:
-        # TODO add from data list that will be auto populated. **ATM** design for manual entry append
-        file = open('exports/data.json', 'a')
-        # this will input information into the file. NOTE: does not add them to the array, but outside of it.
-        file.write(json.dumps(testEntry))
-        # close file when finished adding
-        file.close()
-        break
-    except FileNotFoundError:
-        print('Could not find the file that you\'re trying to write to')
-
+write_json_entry(testEntry)
