@@ -17,6 +17,39 @@
       ],
       "status": "200",
       "notes": ""
+    },
+    {
+      "name": "Soup for you",
+      "url": "soupforyou.com",
+      "subdomain": "",
+      "top-level": "org",
+      "children": [
+        "soupforyou/hi",
+        "soupforyou/march"
+      ],
+      "links": [
+        "follow.org",
+        "skipper.com"
+      ],
+      "status": 200
+    },
+    {
+      "name": "Get Fedora Landing Page",
+      "url": "https://getfedora.org",
+      "subdomain": "",
+      "second-level": "getfedora",
+      "top-level": "org",
+      "children": [
+        "workstation",
+        "server",
+        "iot"
+      ],
+      "links": [
+        "fedoraproject.org",
+        "docs.fedoraproject.org"
+      ],
+      "status": "200",
+      "notes": ""
     }
   ]
 }
