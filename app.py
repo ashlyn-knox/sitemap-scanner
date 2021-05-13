@@ -1,18 +1,21 @@
 # import json
+import csv
 import json
+import os
 
-# SAMPLE DATA
-testEntry = {
-    'name': 'Get Fedora Landing Page',
-    'url': 'https://getfedora.org',
-    'subdomain': '',
-    'second-level': 'getfedora',
-    'top-level': 'org',
-    'children': ['workstation', 'server', 'iot'],
-    'links': ['fedoraproject.org', 'docs.fedoraproject.org'],
-    'status': '200',
-    'notes': ''
-}
+# Directory Management
+def create_output_dir():
+    # check if the default dir already exists
+    default_dir = ('exports')
+    # if not
+    if not os.path.isdir(default_dir):
+        # TODO ask user if default dir is ok
+        # IF yes mkdir exports in current directory
+        os.mkdir(default_dir)
+        print("created directory", default_dir)
+        # TODO else get a directory specified by the user
+    else:
+        print("directory already exists")
 
 # Manual data input funciton
 def pageEntry():
@@ -39,15 +42,38 @@ def pageEntry():
     page_data['status'] = int(input('status: '))
     return page_data
 
-# If no file already, create exports/data.json and add an array called sitemap
+# TODO create content relative filename based on url
 
+# JSON Oput function
 def write_json_entry(new_data, filename="exports/data.json"):
-    with open(filename, 'r+') as file:
-        file_data = json.load(file)
+    with open(filename, 'r+') as json_file:
+        json_file_data = json.load(file)
         # NOTE this will write to a key called siteMap. because it uses append, it will update the list/array. FOR a JSON object, use update(new_data) instead
-        file_data['siteMap'].append(new_data)
-        file.seek(0)
-        json.dump(file_data, file, indent = 2)
+        json_file_data['siteMap'].append(new_data)
+        json_file.seek(0)
+        json.dump(json_file_data, json_file, indent = 2)
 
+# csv output function
+def write_csv_entry(new_data, filename="exports/data.csv"):
+    with open(filename, 'r+') as csv_file:
+        csv_writer = csv.writer(csv_file)
+        # Write column labels
+        csv_writer.writerow(["name",
+                             "url",
+                             "subdomain",
+                             "top-level",
+                             "children",
+                             "links"])
+        # TODO Itrate through scraped data and add to rows
+        # if list is not empty
+        if pages.get("items") is not None:
+            for page in pages.get("items"):
+                page_data_row = [
+                    # TODO Set up scraper to add to list and send information to this function
+                    page[null][null].encode("utf-8"),
+                    page[null][null].encode("utf-8")
+                ]
+                csv.writer.writerow(page_data_row)
+                # TODO handle pagination
 # TODO put into a while True loop to add multiple pages
 write_json_entry(pageEntry())
